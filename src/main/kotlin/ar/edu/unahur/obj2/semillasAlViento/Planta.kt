@@ -5,6 +5,7 @@ abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
 
   fun parcelaTieneComplicaciones(parcela: Parcela) =
     parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
+// esta funcion iria en la clase Parcela , en la consigna se pide consultarle al bojeto Parcela no al objeto Planta
 
   abstract fun horasDeSolQueTolera(): Int
   abstract fun daSemillas(): Boolean
