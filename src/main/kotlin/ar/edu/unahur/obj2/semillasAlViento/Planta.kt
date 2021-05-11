@@ -17,7 +17,7 @@ class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemi
   override fun horasDeSolQueTolera() = 6
   override fun daSemillas() = this.esFuerte() || altura > 0.4
 }
-
+// Desacoplamiento : para evitar complejidades se debe crear una clase herededa de esta clase
 class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
   override fun horasDeSolQueTolera(): Int  {
     // ¡Magia de Kotlin! El `when` es como un `if` pero más poderoso:
@@ -40,9 +40,9 @@ class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean)
 
 // la soja transgenica la pondria en una subclase de soja, poniendo open en soja y generando una nueva clase
 // Desacoplamiento : para evitar complejidades se deberia he
-class SojaTransgenica(anioObtencionSemilla: Int, altura: Float, esTransgenica: Boolean = true): Soja(anioObtencionSemilla, altura, esTransgenica) {
-  override fun daSemillas() = false
-  override fun horasDeSolQueTolera(): Int {
-    return super.horasDeSolQueTolera() * 2
-  }
-}
+//class SojaTransgenica(anioObtencionSemilla: Int, altura: Float, esTransgenica: Boolean = true): Soja(anioObtencionSemilla, altura, esTransgenica) {
+// override fun daSemillas() = false
+//  override fun horasDeSolQueTolera(): Int {
+//    return super.horasDeSolQueTolera() * 2
+//  }
+//}
