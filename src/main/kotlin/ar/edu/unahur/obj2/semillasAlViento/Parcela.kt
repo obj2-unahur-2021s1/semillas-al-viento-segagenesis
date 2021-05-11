@@ -22,7 +22,7 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 
 
 // se podria sacar el cantidadPlantas += 1 porque ya el atributo corre con el tamaño de la lista
-//Robustez: es mucho mejor un throw exception que un println porque
+//RRobustez: es mucho mejor un throw exception que un println porque
 //asi informa correctamente al usuario que hay un error
   fun plantar(planta: Planta) {
     if (cantidadPlantas == this.cantidadMaximaPlantas()) {
