@@ -14,6 +14,7 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 // if (ancho > largo) this.superficie() / 5
 // else this.superficie() / 5
 // aca ale se puede crear una funcion para modificar la superficie con el coeficiente
+// no hernan ahi estarias complejizando algo que no deberia ser complejo y programando algo que no se pide en el enunciado , KISS y YAGNI para vos jajajaj
 
 
 // fun parcelaTieneComplicaciones(parcela: Parcela) =
