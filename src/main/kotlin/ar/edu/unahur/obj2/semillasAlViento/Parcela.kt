@@ -2,12 +2,15 @@ package ar.edu.unahur.obj2.semillasAlViento
 
 class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
-  var cantidadPlantas = 0 // aca pondria plantas.size para que me retorne la cantidad de plantas en la lista mutable
+  // aca pondria plantas.size para que me retorne la cantidad de plantas en la lista mutable
+  // Redundancia Minima: este conocimiento no es necesario porque se puede saber preguntandole
+  // el tamaño de la lista a la coleccion plantas
+  var cantidadPlantas = 0
 
   fun superficie() = ancho * largo
   fun cantidadMaximaPlantas() =
     if (ancho > largo) ancho * largo / 5 else ancho * largo / 3 + largo
-// para no mariar con una cuenta que ya esta en otra funcion pondria directamente this.superficie()
+// para no marear con una cuenta que ya esta en otra funcion pondria directamente this.superficie()
 // if (ancho > largo) this.superficie() / 5
 // else this.superficie() / 5
 // aca ale se puede crear una funcion para modificar la superficie con el coeficiente
@@ -17,6 +20,9 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 //    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
 
 
+// se podria sacar el cantidadPlantas += 1 porque ya el atributo corre con el tamaño de la lista
+//Robustez: es mucho mejor un throw exception que un println porque
+//asi informa correctamente al usuario que hay un error
   fun plantar(planta: Planta) {
     if (cantidadPlantas == this.cantidadMaximaPlantas()) {
       println("Ya no hay lugar en esta parcela")
@@ -28,13 +34,15 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
     }
   }
 }
-// en plantar() se podria sacar el cantidadPlantas += 1 porque ya el atributo corre con el tamaño de la lista
 
 
 // agricultora se podria poner en otro archivo aparte de parcela para no mezclar, asi como plantas esta separado de parcela
+// Mutacion controlada: En el enunciado nos aclara que las
+// parcelas ya tienen que estar definidas por lo que tendria que ser una lista inmutable.
 class Agricultora(val parcelas: MutableList<Parcela>) {
   var ahorrosEnPesos = 20000
-
+  // Simplicidad YAGNI: No hace falta agregar funcionalidades que no nos ayuden
+  // a resolver la problematica actual.
   // Suponemos que una parcela vale 5000 pesos
   fun comprarParcela(parcela: Parcela) {
     if (ahorrosEnPesos >= 5000) {
