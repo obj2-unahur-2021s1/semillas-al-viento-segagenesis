@@ -27,13 +27,11 @@ class ParcelaTest : DescribeSpec({
             it("Si alguna de sus plantas tolera menos sol del que recibe la parcela") {
                 val parcela = Parcela(50,50,7)
                 parcela.plantar(plantaMenta)
-                // No se puede hacer el test porque la funcion esta en planta y no en la parcela
                 parcela.tieneComplicaciones().shouldBeTrue()
             }
             it("Si alguna de sus plantas tolera mas sol del que recible la parcele") {
                 val parcela = Parcela(50,50,2)
                 parcela.plantar(plantaMenta)
-                // No se puede hacer el test porque la funcion esta en planta y no en la parcela
                 parcela.tieneComplicaciones().shouldBeFalse()
             }
         }
