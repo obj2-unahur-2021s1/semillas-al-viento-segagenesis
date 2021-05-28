@@ -13,13 +13,6 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 // para no marear con una cuenta que ya esta en otra funcion pondria directamente this.superficie()
 // if (ancho > largo) this.superficie() / 5
 // else this.superficie() / 5
-// aca ale se puede crear una funcion para modificar la superficie con el coeficiente
-// no hernan ahi estarias complejizando algo que no deberia ser complejo y programando algo que no se pide en el enunciado , KISS y YAGNI para vos jajajaj
-
-
-// fun parcelaTieneComplicaciones(parcela: Parcela) =
-//    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
-
 
 // se podria sacar el cantidadPlantas += 1 porque ya el atributo corre con el tamaño de la lista
 //RRobustez: es mucho mejor un throw exception que un println porque
