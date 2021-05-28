@@ -3,12 +3,6 @@ package ar.edu.unahur.obj2.semillasAlViento
 abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
   fun esFuerte() = this.horasDeSolQueTolera() > 10
 
-  // Cohesion: aunque tenga algo que ver con la clase planta esta funcion
-  // no esta relacionada con la misma sino con la clase Parcela
-  // esta funcion iria en la clase Parcela , en la consigna se pide consultarle al objeto Parcela no al objeto Planta
-  fun parcelaTieneComplicaciones(parcela: Parcela) =
-    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
-
   abstract fun horasDeSolQueTolera(): Int
   abstract fun daSemillas(): Boolean
 }

@@ -2,31 +2,25 @@ package ar.edu.unahur.obj2.semillasAlViento
 
 class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
-  // aca pondria plantas.size para que me retorne la cantidad de plantas en la lista mutable
-  // Redundancia Minima: este conocimiento no es necesario porque se puede saber preguntandole
-  // el tamaño de la lista a la coleccion plantas
-  var cantidadPlantas = 0
 
   fun superficie() = ancho * largo
-  fun cantidadMaximaPlantas() =
-    if (ancho > largo) ancho * largo / 5 else ancho * largo / 3 + largo
-// para no marear con una cuenta que ya esta en otra funcion pondria directamente this.superficie()
-// if (ancho > largo) this.superficie() / 5
-// else this.superficie() / 5
 
-// se podria sacar el cantidadPlantas += 1 porque ya el atributo corre con el tamaño de la lista
-//RRobustez: es mucho mejor un throw exception que un println porque
-//asi informa correctamente al usuario que hay un error
+  fun cantidadMaximaPlantas() =
+    if (ancho > largo) this.superficie() / 5 else this.superficie() / 3 + largo
+
   fun plantar(planta: Planta) {
-    if (cantidadPlantas == this.cantidadMaximaPlantas()) {
-      println("Ya no hay lugar en esta parcela")
+    if (this.cantidadPlantas() == this.cantidadMaximaPlantas()) {
+      throw Exception("Ya no hay lugar en esta parcela")
     } else if (horasSolPorDia > planta.horasDeSolQueTolera() + 2) {
-      println("No se puede plantar esto acá, se va a quemar")
+      throw java.lang.Exception("No se puede plantar esto acá, se va a quemar")
     } else {
       plantas.add(planta)
-      cantidadPlantas += 1
     }
   }
+
+  fun cantidadPlantas() = this.plantas.size
+
+  fun tieneComplicaciones() = this.plantas.any { it.horasDeSolQueTolera() < this.horasSolPorDia }
 }
 
 
@@ -53,7 +47,7 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
     }
 
   fun plantarEstrategicamente(planta: Planta) {
-    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!!
+    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas() }!!
     laElegida.plantas.add(planta)
   }
 }
