@@ -21,33 +21,18 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   fun cantidadPlantas() = this.plantas.size
 
   fun tieneComplicaciones() = this.plantas.any { it.horasDeSolQueTolera() < this.horasSolPorDia }
+
+  fun esSemillera() = this.plantas.all { it.daSemillas() }
 }
 
 
-// agricultora se podria poner en otro archivo aparte de parcela para no mezclar, asi como plantas esta separado de parcela
-// Mutacion controlada: En el enunciado nos aclara que las
-// parcelas ya tienen que estar definidas por lo que tendria que ser una lista inmutable.
-class Agricultora(val parcelas: MutableList<Parcela>) {
-  var ahorrosEnPesos = 20000
-  // Simplicidad YAGNI: No hace falta agregar funcionalidades que no nos ayuden
-  // a resolver la problematica actual.
-  // Suponemos que una parcela vale 5000 pesos
-  fun comprarParcela(parcela: Parcela) {
-    if (ahorrosEnPesos >= 5000) {
-      parcelas.add(parcela)
-      ahorrosEnPesos -= 5000
-    }
-  }
+class Agricultora(val parcelas: List<Parcela>) {
 
-  fun parcelasSemilleras() =
-    parcelas.filter {
-      parcela -> parcela.plantas.all {
-        planta -> planta.daSemillas()
-      }
-    }
+  fun parcelasSemilleras() = this.parcelas.filter { it.esSemillera() }
+
+  fun parcelaEstrategica() = this.parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas() }!!
 
   fun plantarEstrategicamente(planta: Planta) {
-    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas() }!!
-    laElegida.plantas.add(planta)
+    this.parcelaEstrategica().plantar(planta)
   }
 }
