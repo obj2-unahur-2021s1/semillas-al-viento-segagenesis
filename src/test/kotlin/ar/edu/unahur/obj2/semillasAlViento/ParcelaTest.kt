@@ -23,7 +23,7 @@ class ParcelaTest : DescribeSpec({
             }
         }
         describe( "Si tiene complicaciones"){
-            val plantaMenta = Menta(2021,3.3f)
+            val plantaMenta = Menta(2021,3.3)
             it("Si alguna de sus plantas tolera menos sol del que recibe la parcela") {
                 val parcela = Parcela(50,50,7)
                 parcela.plantar(plantaMenta)
@@ -38,16 +38,16 @@ class ParcelaTest : DescribeSpec({
         describe("Al Plantar una planta ocurre un error ") {
             it("Si al plantar se supera la cantidad máxima de plantas que tolera") {
                 val parcela = Parcela(5,2,2)
-                val plantaMenta1 = Menta(2021,3.3f)
-                val plantaMenta2 = Menta(2021,3.4f)
-                val plantaMenta3 = Menta(2021,3.5f)
+                val plantaMenta1 = Menta(2021,3.3)
+                val plantaMenta2 = Menta(2021,3.4)
+                val plantaMenta3 = Menta(2021,3.5)
                 parcela.plantar(plantaMenta1)
                 parcela.plantar(plantaMenta2)
                 shouldThrowAny { parcela.plantar(plantaMenta3) }
             }
             it("O bien si la parcela recibe al menos 2 horas más de sol que los que la planta tolera.") {
                 val parcela = Parcela(50,50,9)
-                val plantaMenta = Menta(2021,3.3f)
+                val plantaMenta = Menta(2021,3.3)
                 shouldThrowAny { parcela.plantar(plantaMenta) }
             }
         }
