@@ -3,8 +3,7 @@ package ar.edu.unahur.obj2.semillasAlViento
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
-class
-AgricultoraTest: DescribeSpec({
+class AgricultoraTest: DescribeSpec({
     describe("Una agricultora") {
         val parceleSinPlantas = Parcela(50,50,2)
         val agricultora = Agricultora(mutableListOf(parceleSinPlantas))
